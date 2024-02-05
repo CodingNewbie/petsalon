@@ -1,0 +1,158 @@
+/* global */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-color: #1E1E59;
+    --light-color: #FFD0CC;
+    --background-pink: #FFEAE8;
+    --background-blue: #F4F6FE;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+img{
+    max-width: 100%;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--background-pink);
+    padding: 20px;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-left .logo {
+    margin-right: 20px;
+}
+
+.navbar .main-menu ul {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left ul li a {
+    padding-inline: 10px;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.navbar-right ul li a {
+    padding-inline: 5px;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.navbar-left ul li a:hover {
+    color: var(--light-color);
+}
+
+.navbar-right ul {
+    display: flex;
+    align-items: center;
+}
+
+/* Hero */
+.hero {
+    padding-top: 50px;
+    background-color: var(--background-pink);
+    background-image: url(/img/soap-suds-bottom-fullwidth-1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+}
+
+.hero .container {
+    display: flex;
+    justify-content: space-between;
+    height: 550px;
+}
+
+.hero-content-left {
+    flex: 1;
+}
+
+.hero .btn {
+    margin-top: 20px;
+}
+
+.hero-heading,
+.hero-text {
+    color: var(--primary-color);
+}
+
+.hero-content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero-content-right img {
+    width: 70%;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: 15px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px;
+    background: var(--light-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.btn-dark {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.7;
+}
+
+/* Text Classes */
+.text-xxl {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    margin: 40px 0 20px;
+}
