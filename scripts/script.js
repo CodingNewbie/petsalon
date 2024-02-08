@@ -1,27 +1,15 @@
 let salon = {
-    pets: [
-        {
-            name: "Khor",
-            age: 5,
-            gender: "Male",
-            service: false,
-            breed: "Husky"
-        },
-        {
-            name: "Lilo",
-            age: 12,
-            gender: "Female",
-            service: false,
-            breed: "Chow chow"
-        },
-        {
-            name: "Meeko",
-            age: 10,
-            gender: "Female",
-            service: true,
-            breed: "Pomeranian"
-        }
-    ]
+    pets: []
+}
+
+function Pet(n, a, g) {
+    this.name = n;
+    this.age = a;
+    this.gender = g;
+}
+
+function getE(id) {
+    return document.getElementById(id);
 }
 
 let registeredPets = document.getElementById('registered-pets');
@@ -37,5 +25,19 @@ function displayPetNames() {
     registeredPets.innerHTML += names;
 }
 
-displayPetCount();
-displayPetNames();
+function displayFooterInfo() {
+    let info = document.getElementById("info");
+    info.innerHTML = `<p> Welcome to ${salon.name}! We are located at ${salon.address.street} ${salon.address.number}</p>`
+}
+  
+function init() {
+    let pet1 = new Pet("Khor", 5, "Male");
+    let pet2 = new Pet("Lilo", 12, "Female");
+    let pet3 = new Pet("Meeko", 10, "Female");
+    salon.pets.push(pet1, pet2, pet3);
+
+    displayPetNames();
+    displayFooterInfo();
+}
+
+window.onload = init;
