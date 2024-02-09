@@ -1,47 +1,89 @@
 let currentTab = 0;
-showTab(currentTab);
 
 function showTab(n) {
     const tabs = document.getElementsByClassName("tab");
 
     for (let i = 0; i < tabs.length; i++) {
-        tabs[i].style.display = "none";  
-    }
+        tabs[i].style.display = "none"; 
+      }
 
     tabs[n].style.display = "block";
 }
 
-  function nextPrev(n) {
-    const tabs = document.getElementsByClassName("tab");
+function goToNextTab() {
+const tabs = document.getElementsByClassName("tab");
 
-    if (n == 1 && !validateForm()) return false;
+if (!validateForm()) {
+    return;
+}
 
-    tabs[currentTab].style.display = "none";
-    currentTab += n;
-    showTab(currentTab);
-  }
+tabs[currentTab].style.display = "none";
+currentTab++;
+
+if (currentTab >= tabs.length) {
+    document.getElementById("regForm").submit();
+    return;
+    }
+    
+showTab(currentTab);
+}
 
 function validateForm() {
-  const formInputs = document.querySelector('.registration-form').getElementsByTagName('input');
-  const isCheckboxChecked = document.getElementById('tos-checkbox').checked;
-  let isValid = true;
+    const tabs = document.getElementsByClassName("tab");
+    const currentTabInputs = tabs[currentTab].getElementsByTagName('input');
+    const tosCheckbox = document.getElementById('tos-checkbox');
+    let isValid = true;
 
-  for (const input of formInputs) {
-    if (['checkbox', 'submit', 'button'].includes(input.type) || input.placeholder === 'Promo code (optional)') {
-      continue;
+    for (const input of currentTabInputs) {
+        if (['submit', 'button'].includes(input.type) || input.placeholder === 'Promo code (optional)') {
+            continue;
+        }
+
+        if (input.type !== 'checkbox' && input.value === "") {
+            input.classList.add('invalid');
+            input.removeEventListener('input', handleInput);
+            input.addEventListener('input', handleInput);
+            isValid = false;
+        }
     }
 
-    if (input.value === "") {
-      input.classList.add('invalid');
-      isValid = false;
+    if (!tosCheckbox.checked) {
+        tosCheckbox.classList.add('invalid-checkbox');
+        tosCheckbox.removeEventListener('change', handleCheckboxChange);
+        tosCheckbox.addEventListener('change', handleCheckboxChange);
+        isValid = false;
     } else {
-      input.classList.remove('invalid');
+        tosCheckbox.classList.remove('invalid-checkbox');
     }
-  }
 
-  if (!isCheckboxChecked) {
-    isValid = false;
-  }
-
-  return isValid;
+    return isValid;
 }
+
+function handleInput(event) {
+    event.target.classList.remove('invalid');
+}
+
+function handleCheckboxChange(event) {
+    event.target.classList.remove('invalid-checkbox');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showTab(currentTab);
+    
+    const addPetButton = document.getElementById('addPetButton');
+    
+    addPetButton.addEventListener('click', function() {
+        const currentTabContainer = document.getElementsByClassName("tab")[currentTab];
+        const addPetSections = currentTabContainer.querySelectorAll('.add-pet');
+        const lastAddPetSection = addPetSections[addPetSections.length - 1];
+
+        const clone = lastAddPetSection.cloneNode(true);
+        clone.querySelectorAll('input').forEach(input => input.value = '');
+        clone.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
+        clone.style.borderTop = "20px solid #FFEAE8";
+
+        const addButton = currentTabContainer.querySelector('#addPetButton');
+        currentTabContainer.insertBefore(clone, addButton);
+    });
+});

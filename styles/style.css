@@ -164,6 +164,7 @@ img{
 
 .registration-form h1 {
     color: var(--primary-color);
+    text-align: center;
 }
 
 .registration-form p {
@@ -254,43 +255,46 @@ img{
 .registration-form .invalid {
     background-color: #ffdddd;
 }
+
+.registration-form .invalid-checkbox {
+    outline: 3px solid #ffdddd;
+}
+
+.registration-form select {
+    background-color: #F3F3F3;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    font-size: 1rem;
+    color: #757575;
+    margin: 7px 0;
+}
+
+.registration-form .type-gender {
+    display: flex;
+    gap: 10px;
+}
+
+.registration-form input[type = checkbox] {
+    accent-color: var(--primary-color);
+}
+
+.pet-name-breed, .pet-age-weight {
+    display: flex;
+    gap: 10px;
+}
+
+#addPetButton {
+    margin: 15px 0;
+}
+
 /* Utility Classes */
 .container {
     max-width: 1100px;
     margin-inline: auto;
     padding-inline: 15px;
 }
-
-
-
-/* .hero mark {
-    position: relative;
-    background-color: var(--background-pink);
-}
-
-.hero mark:after {
-    border: .25em solid var(--primary-color);
-    border-top: none;
-    border-radius: 1.5em 1em 2em 1.5em;
-    bottom: -.3em;
-    content: '';
-    left: -.3em;
-    position: absolute;
-    right: -.3em;
-    top: -.1em;
-}
-
-.hero mark:after {
-    border-top: .25em solid var(--primary-color);
-    border-radius: .5em;
-    content: '';
-    height: 1em;
-    left: 0;
-    position: absolute;
-    top: -.3em;
-    transform: rotate(-10deg);
-    width: 2em;
-} */
 
 /* Buttons */
 .btn {
