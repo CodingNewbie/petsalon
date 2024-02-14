@@ -1,89 +1,58 @@
-let currentTab = 0;
-
-function showTab(n) {
-    const tabs = document.getElementsByClassName("tab");
-
-    for (let i = 0; i < tabs.length; i++) {
-        tabs[i].style.display = "none"; 
-      }
-
-    tabs[n].style.display = "block";
+let salon = {
+    name: "Paws & Relax",
+    phone: "916-214-0050",
+    address: {
+        street: "Broadstone Pwky",
+        number: "1550",
+        zip: "95630"
+    },
+    pets: []
 }
 
-function goToNextTab() {
-const tabs = document.getElementsByClassName("tab");
-
-if (!validateForm()) {
-    return;
+function Pet(type, gender, name, breed, age, weight, service) {
+    this.type = type;
+    this.gender = gender;
+    this.name = name;
+    this.breed = breed;
+    this.age = age;
+    this.weight = weight;
+    this.service = service;
 }
 
-tabs[currentTab].style.display = "none";
-currentTab++;
+const petCardsContainer = document.querySelector("#petCardsContainer");
+const petType = document.querySelector("#petType");
+const petGender = document.querySelector("#petGender");
+const petName = document.querySelector("#petName");
+const petBreed = document.querySelector("#petBreed");
+const petAge = document.querySelector("#petAge");
+const petWeight = document.querySelector("#petWeight");
+const petService = document.querySelector("#petService");
 
-if (currentTab >= tabs.length) {
-    document.getElementById("regForm").submit();
-    return;
+const pet1 = new Pet("Dog", "Male", "Khor", "Husky", 7, "65", "Grooming");
+const pet2 = new Pet("Dog", "Female", "Lilo", "Chow Chow", 12, "60", "Grooming");
+const pet3 = new Pet("Dog", "Female", "Meeko", "Pomeranian", 11, "10", "Grooming");
+salon.pets.push(pet1, pet2, pet3);
+
+function displayPets() {
+    petCardsContainer.innerHTML = `<p>Registered Pets Count: ${salon.pets.length}</p>`;
+
+    for(i = 0; i < salon.pets.length; i++) {
+        let petName = salon.pets[i].name;
+        petCardsContainer.innerHTML += `<p>${petName}</p>`;
     }
-    
-showTab(currentTab);
 }
 
-function validateForm() {
-    const tabs = document.getElementsByClassName("tab");
-    const currentTabInputs = tabs[currentTab].getElementsByTagName('input');
-    const tosCheckbox = document.getElementById('tos-checkbox');
-    let isValid = true;
-
-    for (const input of currentTabInputs) {
-        if (['submit', 'button'].includes(input.type) || input.placeholder === 'Promo code (optional)') {
-            continue;
-        }
-
-        if (input.type !== 'checkbox' && input.value === "") {
-            input.classList.add('invalid');
-            input.removeEventListener('input', handleInput);
-            input.addEventListener('input', handleInput);
-            isValid = false;
-        }
-    }
-
-    if (!tosCheckbox.checked) {
-        tosCheckbox.classList.add('invalid-checkbox');
-        tosCheckbox.removeEventListener('change', handleCheckboxChange);
-        tosCheckbox.addEventListener('change', handleCheckboxChange);
-        isValid = false;
-    } else {
-        tosCheckbox.classList.remove('invalid-checkbox');
-    }
-
-    return isValid;
+function register() {
+    let newPet = new Pet(petType.value, petGender.value, petName.value, petBreed.value, petAge.value, petWeight.value, petService.value);
+    salon.pets.push(newPet);
+    displayPets();
+    clearForm();
 }
 
-function handleInput(event) {
-    event.target.classList.remove('invalid');
-}
-
-function handleCheckboxChange(event) {
-    event.target.classList.remove('invalid-checkbox');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showTab(currentTab);
-    
-    const addPetButton = document.getElementById('addPetButton');
-    
-    addPetButton.addEventListener('click', function() {
-        const currentTabContainer = document.getElementsByClassName("tab")[currentTab];
-        const addPetSections = currentTabContainer.querySelectorAll('.add-pet');
-        const lastAddPetSection = addPetSections[addPetSections.length - 1];
-
-        const clone = lastAddPetSection.cloneNode(true);
-        clone.querySelectorAll('input').forEach(input => input.value = '');
-        clone.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
-
-        clone.style.borderTop = "20px solid #FFEAE8";
-
-        const addButton = currentTabContainer.querySelector('#addPetButton');
-        currentTabContainer.insertBefore(clone, addButton);
+function clearForm() {
+    const formFields = document.querySelectorAll('.registration-form input, .registration-form select');
+    formFields.forEach(field => {
+        field.value = "";
     });
-});
+}
+

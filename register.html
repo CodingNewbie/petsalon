@@ -15,67 +15,54 @@
             </div>
             <div class="soap-suds"></div>
             <form class="registration-form" id="regForm">
-                <div class="tab">
-                    <h1>Fur Family Sign-Up</h1>
-                    <p>Paws a moment to share a few details about you and your furry family members.</p>
-                    <div class="first-last-name">
-                        <input type="text" placeholder="First name">
-                        <input type="text" placeholder="Last name">
-                    </div>
-                    <input type="tel" placeholder="Contact number">
-                    <input type="email" placeholder="Email address">
-                    <input type="text" placeholder="Promo code (optional)">
-                    <div class="tos">
-                        <input type="checkbox" id="tos-checkbox">
-                        <label for="tos-checkbox">I have read & agreed to the <a href="#">Terms of Service</a></label>
-                    </div>
-                    <button class="btn btn-dark" onclick="goToNextTab()" id="nextBtn" type="button">Paw-ceed to Pet Registration!</button>
-    
-                    <div class="or-horizontal-line">
-                        <hr>
-                        <p>OR</p>
-                        <hr>
-                    </div>
-                    <div class="login-section">
-                        <h3>Already have an account?</h3>
-                        <a href="index.html" class="btn btn-primary">Log In</a>
-                    </div>
+                <h1>Fur Family Sign-Up</h1>
+                <p>Paws a moment to share a few details about you and your furry family members.</p>
+                <div class="first-last-name">
+                    <input type="text" placeholder="First name">
+                    <input type="text" placeholder="Last name">
                 </div>
-                <div class="tab">
-                    <h1>Your Furry Friend</h1>
-                    <p>Let's get to know who's getting pampered! Tell us a bit about your pet(s).</p>
-                    <div class="add-pet">
-                        <div class="type-gender">
-                            <select name="type" id="type">
-                                <option style="display: none;" value="">Type</option>
-                                <option value="dog">Dog</option>
-                                <option value="cat">Cat</option>
-                                <option value="bird">Bird</option>
-                            </select>
-                            <select name="gender" id="gender">
-                                <option style="display: none;">Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <input type="text" placeholder="Pet's Name">
-                        <input type="text" placeholder="Breed">
-                        <div class="pet-age-weight">
-                            <input type="number" placeholder="Age">
-                            <input type="text" placeholder="Weight">
-                        </div>
-                        <select name="service" id="service">
-                            <option style="display: none;">Service</option>
-                            <option value="grooming">Boarding</option>
-                            <option value="daycare">Training</option>
-                            <option value="daycare">Grooming</option>
-                            <option value="daycare">Teeth Cleaning</option>
-                        </select>  
+                <input type="tel" placeholder="Contact number">
+                <input type="email" placeholder="Email address">
+                <input type="text" placeholder="Promo code (optional)">
+                <h1>Your Furry Friend</h1>
+                <p>Let's get to know who's getting pampered! Tell us a bit about your pet(s).</p>
+                <div class="add-pet">
+                    <div class="type-gender">
+                        <select name="type" id="petType">
+                            <option style="display: none;" value="">Type</option>
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="bird">Bird</option>
+                        </select>
+                        <select name="gender" id="petGender">
+                            <option style="display: none;" value="">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                     </div>
-                    <button class="btn btn-primary" id="addPetButton" type="button">Add Pet</button>
-                    <button class="btn btn-dark" type="submit">Submit</button>
+                    <input type="text" id="petName" placeholder="Pet's Name">
+                    <input type="text" id="petBreed" placeholder="Breed">
+                    <div class="pet-age-weight">
+                        <input type="number" id="petAge" placeholder="Age">
+                        <input type="number" id="petWeight" placeholder="Weight (in lbs)">
+                    </div>
+                    <select name="service" id="petService">
+                        <option style="display: none;" value="">Service</option>
+                        <option value="grooming">Boarding</option>
+                        <option value="daycare">Training</option>
+                        <option value="daycare">Grooming</option>
+                        <option value="daycare">Teeth Cleaning</option>
+                    </select>  
                 </div>
+                <div class="tos">
+                    <input type="checkbox" id="tos-checkbox">
+                    <label for="tos-checkbox">I have read & agreed to the <a href="#">Terms of Service</a></label>
+                </div>
+                <button class="btn btn-primary" id="addPetButton" type="button">Add Pet</button>
+                <button class="btn btn-dark" type="button" onclick="register()">Submit</button>
             </form>
+
+            <div id="petCardsContainer"></div>
         </div>
     </section>
 </body>
