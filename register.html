@@ -48,10 +48,10 @@
                     </div>
                     <select name="service" id="petService">
                         <option style="display: none;" value="">Service</option>
-                        <option value="grooming">Boarding</option>
-                        <option value="daycare">Training</option>
-                        <option value="daycare">Grooming</option>
-                        <option value="daycare">Teeth Cleaning</option>
+                        <option value="Boarding">Boarding</option>
+                        <option value="Training">Training</option>
+                        <option value="Grooming">Grooming</option>
+                        <option value="Teeth Cleaning">Teeth Cleaning</option>
                     </select>  
                 </div>
                 <div class="tos">
@@ -62,7 +62,20 @@
                 <button class="btn btn-dark" type="button" onclick="register()">Submit</button>
             </form>
 
-            <div id="petCardsContainer"></div>
+            <table class="pet-table" id="petTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Gender</th>
+                        <th>Name</th>
+                        <th>Breed</th>
+                        <th>Age</th>
+                        <th>Weight</th>
+                        <th>Service</th>
+                    </tr>
+                </thead>
+                <tbody id="petTableBody"></tbody>
+            </table>
         </div>
     </section>
 </body>

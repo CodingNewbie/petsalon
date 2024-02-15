@@ -1,3 +1,5 @@
+let petID = 0;
+
 let salon = {
     name: "Paws & Relax",
     phone: "916-214-0050",
@@ -17,9 +19,10 @@ function Pet(type, gender, name, breed, age, weight, service) {
     this.age = age;
     this.weight = weight;
     this.service = service;
+    this.id = petID++;
 }
 
-const petCardsContainer = document.querySelector("#petCardsContainer");
+const petTableBody = document.querySelector("#petTableBody");
 const petType = document.querySelector("#petType");
 const petGender = document.querySelector("#petGender");
 const petName = document.querySelector("#petName");
@@ -34,11 +37,23 @@ const pet3 = new Pet("Dog", "Female", "Meeko", "Pomeranian", 11, "10", "Grooming
 salon.pets.push(pet1, pet2, pet3);
 
 function displayPets() {
-    petCardsContainer.innerHTML = `<p>Registered Pets Count: ${salon.pets.length}</p>`;
+    petTableBody.innerHTML = "";
 
     for(i = 0; i < salon.pets.length; i++) {
-        let petName = salon.pets[i].name;
-        petCardsContainer.innerHTML += `<p>${petName}</p>`;
+        let pet = salon.pets[i];
+    
+
+        petTableBody.innerHTML += `
+            <tr id="${pet.id}">
+                <td>${pet.type}</td>
+                <td>${pet.gender}</td>
+                <td>${pet.name}</td>
+                <td>${pet.breed}</td>
+                <td>${pet.age}</td>
+                <td>${pet.weight}</td>
+                <td>${pet.service}</td>
+            </tr>
+        `;
     }
 }
 
