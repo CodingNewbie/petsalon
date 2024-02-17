@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="./scripts/register.js" defer></script>
+</head>
+<body class="registration-body">
+    <section class="registration">
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="soap-suds"></div>
+            <form class="registration-form" id="regForm">
+                <h1>Services</h1>
+                <p>Paws a moment to pick which service(s) you'd like for your furry family members.</p>
+                <div class="services-flex">
+                    <select name="service" id="petService">
+                        <option style="display: none;" value="">Service</option>
+                        <option value="Boarding">Boarding</option>
+                        <option value="Training">Training</option>
+                        <option value="Grooming">Grooming</option>
+                        <option value="Teeth Cleaning">Teeth Cleaning</option>
+                    </select>  
+                    <input type="number" placeholder="Price">
+                </div>
+                <button class="btn btn-primary" id="addServiceButton" type="button">Add Service</button>
+                <button class="btn btn-dark" type="button" id="btnService">Submit</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script src="jquery-3.7.1.min.js" defer></script>
     <script src="./scripts/register.js" defer></script>
 </head>
 <body class="registration-body">
@@ -15,7 +16,8 @@
             </div>
             <div class="soap-suds"></div>
             <form class="registration-form" id="regForm">
-                <h1>Fur Family Sign-Up</h1>
+                <div id="validationErrorMsg">Please complete all required fields before submitting the form.</div>
+                <!-- <h1>Fur Family Sign-Up</h1>
                 <p>Paws a moment to share a few details about you and your furry family members.</p>
                 <div class="first-last-name">
                     <input type="text" placeholder="First name">
@@ -23,21 +25,21 @@
                 </div>
                 <input type="tel" placeholder="Contact number">
                 <input type="email" placeholder="Email address">
-                <input type="text" placeholder="Promo code (optional)">
+                <input type="text" placeholder="Promo code (optional)"> -->
                 <h1>Your Furry Friend</h1>
                 <p>Let's get to know who's getting pampered! Tell us a bit about your pet(s).</p>
                 <div class="add-pet">
                     <div class="type-gender">
                         <select name="type" id="petType">
                             <option style="display: none;" value="">Type</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                            <option value="bird">Bird</option>
+                            <option value="Dog">Dog</option>
+                            <option value="Cat">Cat</option>
+                            <option value="Bird">Bird</option>
                         </select>
                         <select name="gender" id="petGender">
                             <option style="display: none;" value="">Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
                     <input type="text" id="petName" placeholder="Pet's Name">
@@ -46,20 +48,13 @@
                         <input type="number" id="petAge" placeholder="Age">
                         <input type="number" id="petWeight" placeholder="Weight (in lbs)">
                     </div>
-                    <select name="service" id="petService">
-                        <option style="display: none;" value="">Service</option>
-                        <option value="Boarding">Boarding</option>
-                        <option value="Training">Training</option>
-                        <option value="Grooming">Grooming</option>
-                        <option value="Teeth Cleaning">Teeth Cleaning</option>
-                    </select>  
                 </div>
                 <div class="tos">
                     <input type="checkbox" id="tos-checkbox">
                     <label for="tos-checkbox">I have read & agreed to the <a href="#">Terms of Service</a></label>
                 </div>
                 <button class="btn btn-primary" id="addPetButton" type="button">Add Pet</button>
-                <button class="btn btn-dark" type="button" onclick="register()">Submit</button>
+                <button class="btn btn-dark" type="button" id="btnRegister">Submit</button>
             </form>
 
             <table class="pet-table" id="petTable">
@@ -71,7 +66,6 @@
                         <th>Breed</th>
                         <th>Age</th>
                         <th>Weight</th>
-                        <th>Service</th>
                     </tr>
                 </thead>
                 <tbody id="petTableBody"></tbody>

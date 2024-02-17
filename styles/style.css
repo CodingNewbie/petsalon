@@ -288,6 +288,11 @@ img{
     accent-color: var(--primary-color);
 }
 
+#validationErrorMsg {
+    color: red;
+    text-align: center;
+}
+
 .pet-name-breed, .pet-age-weight {
     display: flex;
     gap: 10px;
@@ -314,6 +319,18 @@ table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
+}
+
+/* Services */
+.services-flex {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+#addServiceButton {
+    margin: 15px 0;
 }
 
 /* Utility Classes */

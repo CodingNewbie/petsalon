@@ -11,18 +11,19 @@ let salon = {
     pets: []
 }
 
-function Pet(type, gender, name, breed, age, weight, service) {
+function Pet(type, gender, name, breed, age, weight) {
     this.type = type;
     this.gender = gender;
     this.name = name;
     this.breed = breed;
     this.age = age;
     this.weight = weight;
-    this.service = service;
     this.id = petID++;
 }
 
+const validationErrorMsg = $("#validationErrorMsg");
 const petTableBody = document.querySelector("#petTableBody");
+const btnRegister = document.querySelector("#btnRegister");
 const petType = document.querySelector("#petType");
 const petGender = document.querySelector("#petGender");
 const petName = document.querySelector("#petName");
@@ -51,17 +52,44 @@ function displayPets() {
                 <td>${pet.breed}</td>
                 <td>${pet.age}</td>
                 <td>${pet.weight}</td>
-                <td>${pet.service}</td>
             </tr>
         `;
     }
 }
 
+function isValid() {
+    let fields = $(".registration-form input, .registration-form select");
+    let isValid = true;
+    
+    fields.each(function() {
+        let placeholderValue = $(this).attr("placeholder");
+
+        if ($(this).is("input[type='checkbox'], input[type='radio']")) {
+            if (!$(this).is(":checked")) {
+                $(this).addClass("invalid-checkbox");
+                validationErrorMsg.show();
+                isValid = false;
+            }
+        } else {
+            if ($(this).val() == "" && placeholderValue != "Promo code (optional)") {
+                $(this).addClass("invalid");
+                validationErrorMsg.show(); 
+                isValid = false; 
+            }
+        }
+    })
+    return isValid;
+}
+
 function register() {
-    let newPet = new Pet(petType.value, petGender.value, petName.value, petBreed.value, petAge.value, petWeight.value, petService.value);
+    let newPet = new Pet(petType.value, petGender.value, petName.value, petBreed.value, petAge.value, petWeight.value);
     salon.pets.push(newPet);
-    displayPets();
-    clearForm();
+
+    if (isValid()) {
+        $("#petTable").show();
+        displayPets();
+        clearForm();
+    }
 }
 
 function clearForm() {
@@ -71,3 +99,19 @@ function clearForm() {
     });
 }
 
+$(document).ready(function() {
+    $("#validationErrorMsg").hide();
+    $("#petTable").hide();
+});
+
+document.addEventListener("input", function(event) {
+    $(event.target).removeClass("invalid");
+});
+
+document.addEventListener("change", function(event) {
+    if (event.target.type == "checkbox") {
+        $(event.target).removeClass("invalid-checkbox");
+    }
+});
+
+btnRegister.addEventListener("click", register);
