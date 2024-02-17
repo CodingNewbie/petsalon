@@ -42,17 +42,18 @@ function displayPets() {
 
     for(i = 0; i < salon.pets.length; i++) {
         let pet = salon.pets[i];
+        let row = petTableBody.insertRow();
+        row.setAttribute('id', 'pet-${pet.id}');
     
 
-        petTableBody.innerHTML += `
-            <tr id="${pet.id}">
+        row.innerHTML = `
                 <td>${pet.type}</td>
                 <td>${pet.gender}</td>
                 <td>${pet.name}</td>
                 <td>${pet.breed}</td>
                 <td>${pet.age}</td>
                 <td>${pet.weight}</td>
-            </tr>
+                <td><button class="delete-btn" data-id="${pet.id}">Delete</button></td>
         `;
     }
 }
@@ -83,10 +84,11 @@ function isValid() {
 
 function register() {
     let newPet = new Pet(petType.value, petGender.value, petName.value, petBreed.value, petAge.value, petWeight.value);
-    salon.pets.push(newPet);
-
+    
     if (isValid()) {
         $("#petTable").show();
+        validationErrorMsg.hide();
+        salon.pets.push(newPet);
         displayPets();
         clearForm();
     }
@@ -111,6 +113,18 @@ document.addEventListener("input", function(event) {
 document.addEventListener("change", function(event) {
     if (event.target.type == "checkbox") {
         $(event.target).removeClass("invalid-checkbox");
+    }
+});
+
+petTableBody.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-btn')) {
+        var row = event.target.closest('tr');
+        var petId = row.id.replace('pet-', '');
+        
+        salon.pets = salon.pets.filter(function(pet) {
+            return pet.id.toString() !== petId;
+        });
+        row.remove();
     }
 });
 
