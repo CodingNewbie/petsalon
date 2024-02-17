@@ -101,6 +101,17 @@ function clearForm() {
     });
 }
 
+function deletePet(deleteButton) {
+    var row = deleteButton.closest('tr');
+    var petId = row.id.replace('pet-', '');
+    
+    salon.pets = salon.pets.filter(function(pet) {
+        return pet.id.toString() !== petId;
+    });
+    
+    row.remove();
+}
+
 $(document).ready(function() {
     $("#validationErrorMsg").hide();
     $("#petTable").hide();
@@ -118,13 +129,7 @@ document.addEventListener("change", function(event) {
 
 petTableBody.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-btn')) {
-        var row = event.target.closest('tr');
-        var petId = row.id.replace('pet-', '');
-        
-        salon.pets = salon.pets.filter(function(pet) {
-            return pet.id.toString() !== petId;
-        });
-        row.remove();
+        deletePet(event.target);
     }
 });
 
