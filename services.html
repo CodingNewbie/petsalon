@@ -6,6 +6,8 @@
     <title>Register</title>
     <link rel="stylesheet" href="styles/style.css">
     <script src="./scripts/register.js" defer></script>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="./scripts/services.js" defer></script>
 </head>
 <body class="registration-body">
     <section class="registration">
@@ -25,11 +27,12 @@
                         <option value="Grooming">Grooming</option>
                         <option value="Teeth Cleaning">Teeth Cleaning</option>
                     </select>  
-                    <input type="number" placeholder="Price">
+                    <input type="number" placeholder="Price" id="petPrice">
                 </div>
-                <button class="btn btn-primary" id="addServiceButton" type="button">Add Service</button>
+                <!-- <button class="btn btn-primary" id="addServiceButton" type="button">Add Service</button> -->
                 <button class="btn btn-dark" type="button" id="btnService">Submit</button>
             </form>
+            <div id="services"></div>
         </div>
     </section>
 </body>
