@@ -84,7 +84,7 @@ img{
 .hero {
     padding-top: 50px;
     background-color: var(--background-pink);
-    background-image: url(/img/soap-suds-bottom-fullwidth-1.png);
+    background-image: url(img/soap-suds-bottom-fullwidth-1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center bottom;
@@ -155,7 +155,7 @@ img{
 .registration .soap-suds {
     padding-top: 50px;
     background-color: var(--background-pink);
-    background-image: url(/img/soap-suds-registration-top.png);
+    background-image: url(img/soap-suds-registration-top.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     width: 500px;
